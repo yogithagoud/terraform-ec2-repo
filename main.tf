@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "us-east-2"
+  region     = "ap-southeast-1"
   access_key = ""
   secret_key = ""
 }
@@ -30,6 +30,16 @@ resource "aws_security_group" "my_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  # User data script to run at instance launch
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo yum install docker -y
+              sudo usermod -aG docker ec2-user
+              sudo systemctl enable docker.service
+              sudo systemctl start docker.service
+              docker run -itd -p 8085:8080 kalithkarrahul/webapp:1.0 
+              echo "Welcome to Jenkins Provisioned EC2. Your application is up and running!"
+              EOF
 
   tags= {
     Name = var.security_group
