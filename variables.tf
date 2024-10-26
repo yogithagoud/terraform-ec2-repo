@@ -18,11 +18,6 @@ variable "security_group" {
   default     = "launch-wizard-3"
 }
 
-variable "tag_name" {
-  description = "Tag Name of for Ec2 instance"
-  default     = "my-web-app"
-}
-
 variable "ami_id" {
   description = "AMI for Amazon Ami2 Ec2 instance"
   default     = "ami-04b6019d38ea93034"
