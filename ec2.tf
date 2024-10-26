@@ -1,17 +1,29 @@
 # Define the EC2 instance resource
-resource "aws_instance" "sbi_ec2_1" {
-  ami           = "ami-04b6019d38ea93034"
-  instance_type = "t2.micro"
+resource "aws_instance" "sbi_ec2" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
 
   # Use the existing security group ID
-  vpc_security_group_ids = ["sg-0e59e4c5e983a0cb1"]  
+  vpc_security_group_ids = [var.security_group]  
+
+  # User data script to run at instance launch
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo yum install docker -y
+              sudo usermod -aG docker ec2-user
+              sudo systemctl enable docker.service
+              sudo systemctl start docker.service
+              docker run -itd -p 8085:8080 kalithkarrahul/webapp:1.0 
+              echo "Welcome to Jenkins Provisioned EC2. Your application is up and running!"
+              EOF
 
   tags = {
-    Name = "Sbi_ec2_1"
+    Name = "Sbi_ec2"
+    environment = "Dev"
   }
 
   # Optional: Add a key pair for SSH access
-  key_name = "Singapore"  
+  key_name = var.key_name  
 
   # Define the root block device settings
   root_block_device {
@@ -21,5 +33,5 @@ resource "aws_instance" "sbi_ec2_1" {
 
 # Output the instance's public IP
 output "instance_public_ip_1" {
-  value = aws_instance.sbi_ec2_1.public_ip
+  value = aws_instance.sbi_ec2.public_ip
 }
