@@ -13,7 +13,7 @@ resource "aws_instance" "sbi_ec2" {
               sudo usermod -aG docker ec2-user
               sudo systemctl enable docker.service
               sudo systemctl start docker.service
-              docker run -itd -p 8085:8080 kalithkarrahul/webapp:1.0 
+              docker run -itd -p 8086:8080 kalithkarrahul/myapp:1.5
               echo "Welcome to Jenkins Provisioned EC2. Your application is up and running!"
               EOF
 
