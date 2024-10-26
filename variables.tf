@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "security_group" {
   description = "Name of security group"
-  default     = "launch-wizard-3"
+  default     = "sg-0e59e4c5e983a0cb1"
 }
 
 variable "ami_id" {
