@@ -32,6 +32,6 @@ resource "aws_instance" "sbi_ec2" {
 }
 
 # Output the instance's public IP
-output "instance_public_ip_1" {
+output "instance_public_ip" {
   value = aws_instance.sbi_ec2.public_ip
 }
