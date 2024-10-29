@@ -13,7 +13,7 @@ resource "aws_instance" "sbi_ec2" {
               sudo usermod -aG docker ec2-user
               sudo systemctl enable docker.service
               sudo systemctl start docker.service
-              docker run -itd -p 8086:8080 kalithkarrahul/myapp:1.5
+              docker run -itd -p 8086:8080 yogitha8184/application:1.5
               echo "Welcome to Jenkins Provisioned EC2. Your application is up and running!"
               EOF
 
@@ -34,5 +34,5 @@ resource "aws_instance" "sbi_ec2" {
 # Output the instance's public IP
 output "instance_public_ip" {
   value = aws_instance.sbi_ec2.public_ip
-  description = "Public IP address of the SBI EC2 instance"
+  description = "13.201.16.83"
 }
