@@ -30,9 +30,3 @@ resource "aws_instance" "sbi_ec2" {
     volume_size = 8  # Volume size in GB
   }
 }
-
-# Output the instance's public IP
-output "instance_public_ip" {
-  value = aws_instance.sbi_ec2.public_ip
-  description = "13.201.16.83"
-}
