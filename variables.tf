@@ -1,11 +1,11 @@
 variable "aws_region" {
   description = "The AWS region to create things in."
-  default     = "ap-south-1"
+  default     = "us-east-1"
 }
 
 variable "key_name" {
   description = " SSH keys to connect to ec2 instance"
-  default     =  "Mumbai"
+  default     =  "N. Virginia"
 }
 
 variable "instance_type" {
@@ -15,10 +15,10 @@ variable "instance_type" {
 
 variable "security_group" {
   description = "Name of security group"
-  default     = "sg-046ee8544142aee13"
+  default     = "sg-0ef59475b6d541b23"
 }
 
 variable "ami_id" {
   description = "AMI for Amazon Ami2 Ec2 instance"
-  default     = "ami-04a37924ffe27da53"
+  default     = "ami-06b21ccaeff8cd686"
 }
