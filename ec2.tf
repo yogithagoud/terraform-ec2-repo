@@ -30,3 +30,12 @@ resource "aws_instance" "sbi_ec2" {
     volume_size = 8  # Volume size in GB
   }
 }
+#Terraform configuration specifies an S3 backend
+terraform {
+  backend "s3" {
+    bucket         = "terraform backup"
+    key            = "terraform/statefile.tfstate"
+    region         = "us-east-1"
+  }
+}
+
